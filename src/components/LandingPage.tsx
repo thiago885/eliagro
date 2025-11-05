@@ -207,10 +207,10 @@ const LandingPage = () => {
                 </li>
               ))}
             </ul>
-            <div className="mt-10">
+            <div className="mt-10 max-w-xs mx-auto">
               <Button
                 asChild
-                className="bg-[#009F47] hover:bg-[#007a34] text-white rounded-full shadow-lg px-8 py-3 text-lg font-semibold transition-colors"
+                className="w-full bg-[#009F47] hover:bg-[#007a34] text-white rounded-full shadow-lg px-8 py-3 text-lg font-semibold transition-colors"
               >
                 <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Chame no WhatsApp e receba orientação agora">
                   Chame no WhatsApp e receba orientação agora
