@@ -79,7 +79,7 @@ const promotions = [
     title: "Campanha de Vacinação",
     description: "Proteja seu rebanho com as melhores vacinas.",
     image:
-      "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80", // vacas no campo
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", // vacas no campo
     alt: "Campanha de vacinação Eliagro",
   },
   {
@@ -93,7 +93,7 @@ const promotions = [
     title: "Adubos e Fertilizantes",
     description: "Incentive sua lavoura com insumos de qualidade.",
     image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", // campo agrícola
+      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80", // campo agrícola
     alt: "Adubos e fertilizantes Eliagro",
   },
 ];
@@ -113,7 +113,7 @@ const LandingPage = () => {
           className="relative bg-cover bg-center bg-no-repeat min-h-[480px] flex flex-col justify-center items-center text-center px-6 md:px-12"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=80')", // vacas no campo
+              "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80')", // vacas no campo
           }}
           aria-label="Imagem da loja ou fazenda com luz natural"
         >
