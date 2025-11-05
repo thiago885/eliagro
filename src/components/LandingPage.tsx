@@ -256,12 +256,12 @@ const LandingPage = () => {
               </Carousel>
             )}
 
-            <div className="mt-10 text-center">
+            <div className="mt-10 text-center overflow-x-hidden max-w-full mx-auto">
               <Button
                 asChild
-                className="bg-[#F4C300] hover:bg-[#c9a500] text-[#004C72] rounded-full shadow-lg px-4 sm:px-8 py-3 text-lg font-semibold transition-colors w-auto sm:w-auto"
+                className="bg-[#F4C300] hover:bg-[#c9a500] text-[#004C72] rounded-full shadow-lg px-4 sm:px-8 py-3 text-lg font-semibold transition-colors max-w-full w-auto sm:w-auto"
               >
-                <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Receba as promoções no seu WhatsApp">
+                <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Receba as promoções no seu WhatsApp" className="truncate block">
                   Receba as promoções no seu WhatsApp
                 </a>
               </Button>
