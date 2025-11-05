@@ -4,7 +4,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Phone, CheckCircle2, Users, Star, MessageSquare, Pill, Package, Tool, Seedling, Dog, Cow } from "lucide-react";
+import { Phone, CheckCircle2, Users, Star, MessageSquare, Pill, Package, Tool, Seedling, Dog, Coffee } from "lucide-react";
 import { Carousel } from "@/components/ui/carousel";
 import Header from "./Header";
 
@@ -18,7 +18,7 @@ const productCategories = [
     alt: "Medicamentos veterinários Eliagro MG",
   },
   {
-    icon: <Cow className="text-[#009F47]" size={48} />,
+    icon: <Coffee className="text-[#009F47]" size={48} />,
     title: "Rações e Suplementos",
     alt: "Rações e suplementos Eliagro MG",
   },
