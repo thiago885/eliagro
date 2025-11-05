@@ -128,7 +128,7 @@ const LandingPage = () => {
             </h2>
             <Button
               asChild
-              className="bg-[#009F47] hover:bg-[#007a34] text-white rounded-full shadow-lg px-8 py-3 text-lg font-semibold transition-colors"
+              className="bg-[#009F47] hover:bg-[#007a34] text-white rounded-full shadow-lg px-4 sm:px-8 py-3 text-lg font-semibold transition-colors w-auto sm:w-auto"
             >
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Fale com um especialista no WhatsApp">
                 Fale com um especialista no WhatsApp
@@ -186,7 +186,7 @@ const LandingPage = () => {
           <div className="mt-12 text-center">
             <Button
               asChild
-              className="bg-[#F4C300] hover:bg-[#c9a500] text-[#004C72] rounded-full shadow-lg px-8 py-3 text-lg font-semibold transition-colors"
+              className="bg-[#F4C300] hover:bg-[#c9a500] text-[#004C72] rounded-full shadow-lg px-4 sm:px-8 py-3 text-lg font-semibold transition-colors w-auto sm:w-auto"
             >
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Veja nossas ofertas no WhatsApp">
                 Veja nossas ofertas no WhatsApp
@@ -210,7 +210,7 @@ const LandingPage = () => {
             <div className="mt-10 max-w-xs mx-auto">
               <Button
                 asChild
-                className="w-full bg-[#009F47] hover:bg-[#007a34] text-white rounded-full shadow-lg px-8 py-3 text-lg font-semibold transition-colors"
+                className="w-auto sm:w-full bg-[#009F47] hover:bg-[#007a34] text-white rounded-full shadow-lg px-4 sm:px-8 py-3 text-lg font-semibold transition-colors"
               >
                 <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Chame no WhatsApp e receba orientação agora">
                   Chame no WhatsApp agora
@@ -259,7 +259,7 @@ const LandingPage = () => {
             <div className="mt-10 text-center">
               <Button
                 asChild
-                className="bg-[#F4C300] hover:bg-[#c9a500] text-[#004C72] rounded-full shadow-lg px-8 py-3 text-lg font-semibold transition-colors"
+                className="bg-[#F4C300] hover:bg-[#c9a500] text-[#004C72] rounded-full shadow-lg px-4 sm:px-8 py-3 text-lg font-semibold transition-colors w-auto sm:w-auto"
               >
                 <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Receba as promoções no seu WhatsApp">
                   Receba as promoções no seu WhatsApp
@@ -337,7 +337,7 @@ const LandingPage = () => {
               <div className="mt-8">
                 <Button
                   asChild
-                  className="bg-[#F4C300] hover:bg-[#c9a500] text-[#004C72] rounded-full shadow-lg px-8 py-3 text-lg font-semibold transition-colors"
+                  className="bg-[#F4C300] hover:bg-[#c9a500] text-[#004C72] rounded-full shadow-lg px-4 sm:px-8 py-3 text-lg font-semibold transition-colors w-auto sm:w-auto"
                 >
                   <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Fale com nossa equipe agora">
                     Fale com nossa equipe agora
