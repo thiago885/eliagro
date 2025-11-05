@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Carousel } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Phone, CheckCircle2, Truck, Users, Star, ShoppingCart, Whatsapp } from "lucide-react";
+import { Phone, CheckCircle2, Truck, Users, Star, ShoppingCart, BrandWhatsapp } from "lucide-react";
 
 const whatsappNumber = "5534999474396";
 const whatsappLink = `https://wa.me/${whatsappNumber}`;
@@ -139,7 +139,7 @@ const LandingPage = () => {
           aria-label="WhatsApp Eliagro"
           className="fixed right-4 bottom-6 md:right-8 md:bottom-8 bg-[#25D366] hover:bg-[#1ebe5a] text-white rounded-full p-4 shadow-lg z-50 transition-colors"
         >
-          <Whatsapp size={28} />
+          <BrandWhatsapp size={28} />
         </a>
       </section>
 
@@ -298,7 +298,7 @@ const LandingPage = () => {
             <h2 className="text-3xl font-bold mb-6">Estamos prontos para atender você.</h2>
             <ul className="space-y-4 text-lg">
               <li className="flex items-center gap-3">
-                <Whatsapp size={24} aria-hidden="true" />
+                <BrandWhatsapp size={24} aria-hidden="true" />
                 <a
                   href={whatsappLink}
                   target="_blank"
