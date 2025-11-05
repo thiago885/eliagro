@@ -3,9 +3,11 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Carousel } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Phone, CheckCircle2, Users, Star, MessageSquare } from "lucide-react";
+
+// Import Carousel and CarouselSlide if available, else fallback
+import { Carousel } from "@/components/ui/carousel";
 
 const whatsappNumber = "5534999474396";
 const whatsappLink = `https://wa.me/${whatsappNumber}`;
@@ -99,6 +101,9 @@ const promotions = [
 
 const LandingPage = () => {
   const isMobile = useIsMobile();
+
+  // Check if Carousel and Carousel.Slide exist
+  const hasCarousel = Carousel && typeof Carousel === "function" && Carousel.Slide;
 
   return (
     <main className="font-sans bg-[#F9FAFB] text-[#004C72]">
@@ -223,7 +228,7 @@ const LandingPage = () => {
           <h2 className="text-3xl font-bold text-[#004C72] mb-2 text-center">Promoções e Ações Sazonais da Eliagro</h2>
           <p className="text-center text-lg text-[#009F47] mb-8">A cada época do ano, novas oportunidades no agro.</p>
 
-          {isMobile ? (
+          {isMobile || !hasCarousel ? (
             <div className="space-y-8">
               {promotions.map(({ title, description, image, alt }) => (
                 <div key={title} className="rounded-lg overflow-hidden shadow-lg">
