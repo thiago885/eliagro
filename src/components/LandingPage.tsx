@@ -4,7 +4,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Phone, CheckCircle2, Users, Star, MessageSquare } from "lucide-react";
+import { Phone, CheckCircle2, Users, Star, MessageSquare, Pill, Package, Tool, Seedling, Dog, Cow } from "lucide-react";
 import { Carousel } from "@/components/ui/carousel";
 import Header from "./Header";
 
@@ -13,32 +13,32 @@ const whatsappLink = `https://wa.me/${whatsappNumber}`;
 
 const productCategories = [
   {
-    icon: "💊",
+    icon: <Pill className="text-[#009F47]" size={48} />,
     title: "Medicamentos Veterinários",
     alt: "Medicamentos veterinários Eliagro MG",
   },
   {
-    icon: "🐄",
+    icon: <Cow className="text-[#009F47]" size={48} />,
     title: "Rações e Suplementos",
     alt: "Rações e suplementos Eliagro MG",
   },
   {
-    icon: "🐶",
+    icon: <Dog className="text-[#009F47]" size={48} />,
     title: "Produtos Pet Shop",
     alt: "Produtos pet shop Eliagro MG",
   },
   {
-    icon: "🌽",
+    icon: <Seedling className="text-[#009F47]" size={48} />,
     title: "Sementes e Inoculantes",
     alt: "Sementes e inoculantes Eliagro MG",
   },
   {
-    icon: "🧰",
+    icon: <Tool className="text-[#009F47]" size={48} />,
     title: "Ferramentas e Lonas",
     alt: "Ferramentas e lonas Eliagro MG",
   },
   {
-    icon: "🤠",
+    icon: <Package className="text-[#009F47]" size={48} />,
     title: "Selaria e Roupas Country",
     alt: "Selaria e roupas country Eliagro MG",
   },
@@ -79,21 +79,21 @@ const promotions = [
     title: "Campanha de Vacinação",
     description: "Proteja seu rebanho com as melhores vacinas.",
     image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", // vacas no campo
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
     alt: "Campanha de vacinação Eliagro",
   },
   {
     title: "Promoção de Rações",
     description: "Descontos especiais em rações selecionadas.",
     image:
-      "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=800&q=80", // gado pastando
+      "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=800&q=80",
     alt: "Promoção de rações Eliagro",
   },
   {
     title: "Adubos e Fertilizantes",
     description: "Incentive sua lavoura com insumos de qualidade.",
     image:
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80", // campo agrícola
+      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80",
     alt: "Adubos e fertilizantes Eliagro",
   },
 ];
@@ -113,7 +113,7 @@ const LandingPage = () => {
           className="relative bg-cover bg-center bg-no-repeat min-h-[480px] flex flex-col justify-center items-center text-center px-6 md:px-12"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80')", // vacas no campo
+              "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80')",
           }}
           aria-label="Imagem da loja ou fazenda com luz natural"
         >
@@ -151,7 +151,7 @@ const LandingPage = () => {
         {/* About Section */}
         <section className="bg-white py-16 px-6 md:px-12 flex flex-col md:flex-row items-center max-w-7xl mx-auto gap-10">
           <img
-            src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=600&q=80" // gado pastando
+            src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=600&q=80"
             alt="Equipe da Eliagro Produtos Agropecuários"
             className="w-full md:w-1/2 rounded-lg shadow-lg object-cover max-h-[400px]"
             loading="lazy"
@@ -178,7 +178,7 @@ const LandingPage = () => {
                 className="flex flex-col items-center bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow cursor-default"
                 aria-label={alt}
               >
-                <div className="text-5xl mb-4">{icon}</div>
+                <div className="mb-4">{icon}</div>
                 <h3 className="text-xl font-semibold text-[#009F47]">{title}</h3>
               </div>
             ))}
