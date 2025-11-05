@@ -4,7 +4,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Phone, CheckCircle2, Users, Star, MessageSquare, Pill, Package, Tool, Seedling, Dog, Coffee } from "lucide-react";
+import { Phone, CheckCircle2, Users, Star, MessageSquare, Pill, Package, Tool, Leaf, Dog, Coffee } from "lucide-react";
 import { Carousel } from "@/components/ui/carousel";
 import Header from "./Header";
 
@@ -28,7 +28,7 @@ const productCategories = [
     alt: "Produtos pet shop Eliagro MG",
   },
   {
-    icon: <Seedling className="text-[#009F47]" size={48} />,
+    icon: <Leaf className="text-[#009F47]" size={48} />,
     title: "Sementes e Inoculantes",
     alt: "Sementes e inoculantes Eliagro MG",
   },
