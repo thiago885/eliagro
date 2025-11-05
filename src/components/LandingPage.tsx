@@ -4,7 +4,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Phone, CheckCircle2, Users, Star, MessageSquare, Pill, Package, Tool, Leaf, Dog, Coffee } from "lucide-react";
+import { Phone, CheckCircle2, Users, Star, MessageSquare, Pill, Package, Wrench, Leaf, Dog, Coffee } from "lucide-react";
 import { Carousel } from "@/components/ui/carousel";
 import Header from "./Header";
 
@@ -33,7 +33,7 @@ const productCategories = [
     alt: "Sementes e inoculantes Eliagro MG",
   },
   {
-    icon: <Tool className="text-[#009F47]" size={48} />,
+    icon: <Wrench className="text-[#009F47]" size={48} />,
     title: "Ferramentas e Lonas",
     alt: "Ferramentas e lonas Eliagro MG",
   },
