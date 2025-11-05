@@ -21,7 +21,7 @@ const Header = () => {
         {/* Logo */}
         <a href="/" aria-label="Eliagro Produtos Agropecuários" className="flex items-center">
           <img
-            src="https://eliagro.com.br/wp-content/uploads/2020/06/logo-eliagro.png"
+            src="http://eliagro.com.br/imgs/logodaeliagro.png"
             alt="Logo Eliagro Produtos Agropecuários"
             className="h-10 w-auto"
             loading="lazy"

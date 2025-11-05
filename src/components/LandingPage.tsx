@@ -365,7 +365,7 @@ const LandingPage = () => {
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3 justify-center md:justify-start">
               <img
-                src="https://eliagro.com.br/wp-content/uploads/2020/06/logo-eliagro.png"
+                src="http://eliagro.com.br/imgs/logodaeliagro.png"
                 alt="Logo Eliagro Produtos Agropecuários"
                 className="h-10 object-contain"
                 loading="lazy"
