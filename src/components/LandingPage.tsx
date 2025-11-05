@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Carousel } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Phone, CheckCircle2, Truck, Users, Star, ShoppingCart, BrandWhatsapp } from "lucide-react";
+import { Phone, CheckCircle2, Truck, Users, Star, ShoppingCart, MessageSquare } from "lucide-react";
 
 const whatsappNumber = "5534999474396";
 const whatsappLink = `https://wa.me/${whatsappNumber}`;
@@ -131,15 +131,15 @@ const LandingPage = () => {
           </Button>
           <p className="text-sm opacity-80 mt-2 drop-shadow-md">Desde 1989 | Tradição e Confiança no Campo</p>
         </div>
-        {/* Floating WhatsApp Icon */}
+        {/* Floating Message Icon */}
         <a
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="WhatsApp Eliagro"
+          aria-label="Mensagem Eliagro"
           className="fixed right-4 bottom-6 md:right-8 md:bottom-8 bg-[#25D366] hover:bg-[#1ebe5a] text-white rounded-full p-4 shadow-lg z-50 transition-colors"
         >
-          <BrandWhatsapp size={28} />
+          <MessageSquare size={28} />
         </a>
       </section>
 
@@ -298,13 +298,13 @@ const LandingPage = () => {
             <h2 className="text-3xl font-bold mb-6">Estamos prontos para atender você.</h2>
             <ul className="space-y-4 text-lg">
               <li className="flex items-center gap-3">
-                <BrandWhatsapp size={24} aria-hidden="true" />
+                <MessageSquare size={24} aria-hidden="true" />
                 <a
                   href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:text-[#F4C300]"
-                  aria-label="WhatsApp Eliagro"
+                  aria-label="Mensagem Eliagro"
                 >
                   (34) 99947-4396
                 </a>
