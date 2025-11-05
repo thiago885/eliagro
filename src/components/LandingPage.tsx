@@ -3,10 +3,9 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Carousel } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Phone, CheckCircle2, Truck, Users, Star, ShoppingCart, MessageSquare } from "lucide-react";
+import { Phone, CheckCircle2, Users, Star, MessageSquare } from "lucide-react";
 
 const whatsappNumber = "5534999474396";
 const whatsappLink = `https://wa.me/${whatsappNumber}`;
