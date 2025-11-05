@@ -12,7 +12,7 @@ import {
   Instagram,
   Facebook,
   Twitter,
-  Whatsapp,
+  Zap,
 } from "lucide-react";
 
 const productCards = [
@@ -103,7 +103,7 @@ const socialLinks = [
     label: "Twitter Eliagro",
   },
   {
-    icon: <Whatsapp size={24} />,
+    icon: <Zap size={24} />,
     href: "https://wa.me/5534999474396",
     label: "WhatsApp Eliagro",
   },
