@@ -1,7 +1,7 @@
-import LandingPage from "@/components/LandingPage";
+import ModernLandingPage from "@/components/ModernLandingPage";
 
 const Index = () => {
-  return <LandingPage />;
+  return <ModernLandingPage />;
 };
 
 export default Index;
