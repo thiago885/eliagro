@@ -23,7 +23,7 @@ const Header = () => {
           <img
             src="http://eliagro.com.br/imgs/logodaeliagro.png"
             alt="Logo Eliagro Produtos Agropecuários"
-            className="h-10 w-auto"
+            className="h-16 w-auto"
             loading="lazy"
           />
         </a>

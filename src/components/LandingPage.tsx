@@ -367,7 +367,7 @@ const LandingPage = () => {
               <img
                 src="http://eliagro.com.br/imgs/logodaeliagro.png"
                 alt="Logo Eliagro Produtos Agropecuários"
-                className="h-10 object-contain"
+                className="h-16 object-contain"
                 loading="lazy"
               />
               <p className="text-sm max-w-md">
