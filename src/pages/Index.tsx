@@ -52,10 +52,19 @@ const Index = () => {
         className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-6 md:px-12 bg-fixed bg-center bg-cover"
         style={{
           backgroundImage:
-            "url('http://eliagro.com.br/imgs/banner_site_eliagro.jpg')",
+            "url('http://eliagro.com.br/imgs/bbannse_eliagro_mobile.jpg')",
         }}
         aria-label="Imagem hero da Eliagro com overlay e parallax"
       >
+        {/* Desktop background image */}
+        <div 
+          className="hidden md:block absolute inset-0 bg-fixed bg-center bg-cover"
+          style={{
+            backgroundImage: "url('http://eliagro.com.br/imgs/banner_site_eliagro.jpg')",
+          }}
+          aria-hidden="true"
+        />
+        
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 z-10" />
         <div className="relative z-20 max-w-4xl text-white space-y-6">
           <h1 className="text-4xl md:text-5xl font-extrabold font-poppins leading-tight drop-shadow-lg">
