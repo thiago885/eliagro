@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, ChevronRight, Star, Pill, Wheat, PawPrint, Sprout, Wrench, Shirt, CheckCircle2, Instagram, Facebook, MessageCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Phone, Mail, MapPin, Clock, ChevronRight, Star, Pill, Wheat, PawPrint, Sprout, Wrench, Shirt, CheckCircle2, Instagram, Facebook, MessageCircle, Menu, X } from "lucide-react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import HeroSection from "../components/HeroSection";
@@ -140,6 +140,7 @@ const schemaData = {
 
 const Index = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [statsRef, statsInView] = useInView({ triggerOnce: true, threshold: 0.3 });
   const [productsRef, productsInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -156,6 +157,7 @@ const Index = () => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
+      setMobileMenuOpen(false);
     }
   };
 
@@ -211,6 +213,7 @@ const Index = () => {
               />
             </a>
 
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8 font-medium text-[#0C3B2E]" aria-label="Navegação principal">
               {["Início", "Produtos", "Sobre", "Contato"].map((item) => (
                 <button
@@ -223,6 +226,7 @@ const Index = () => {
               ))}
             </nav>
 
+            {/* Desktop WhatsApp Button */}
             <motion.a
               href={whatsappLink}
               target="_blank"
@@ -235,7 +239,51 @@ const Index = () => {
               <Phone size={20} />
               Fale no WhatsApp
             </motion.a>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden text-[#0C3B2E] p-2"
+              aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+            >
+              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.nav
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden bg-white shadow-lg overflow-hidden"
+              >
+                <div className="px-6 py-4 space-y-4">
+                  {["Início", "Produtos", "Sobre", "Contato"].map((item) => (
+                    <button
+                      key={item}
+                      onClick={() => scrollToSection(item.toLowerCase())}
+                      className="block w-full text-left text-lg font-medium text-[#0C3B2E] hover:text-[#16A34A] transition-colors py-2"
+                    >
+                      {item}
+                    </button>
+                  ))}
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full shadow-lg font-semibold mt-4"
+                    aria-label="Fale conosco pelo WhatsApp"
+                  >
+                    <Phone size={20} />
+                    Fale no WhatsApp
+                  </a>
+                </div>
+              </motion.nav>
+            )}
+          </AnimatePresence>
         </motion.header>
 
         {/* Main Content */}
