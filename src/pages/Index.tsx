@@ -1,259 +1,446 @@
 "use client";
 
-import React from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
-import { Phone } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Phone, Mail, MapPin, Clock, ChevronRight, Star, Users, Award, TrendingUp } from "lucide-react";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
+
+const whatsappLink = "https://wa.me/5534999474396";
 
 const productCategories = [
-  "Medicamentos Veterinários",
-  "Rações e Suplementos",
-  "Produtos Pet Shop",
-  "Sementes e Inoculantes",
-  "Ferramentas e Lonas",
-  "Selaria e Roupas Country",
+  {
+    title: "Medicamentos Veterinários",
+    description: "Linha completa para saúde animal",
+    icon: "💊",
+  },
+  {
+    title: "Rações e Suplementos",
+    description: "Nutrição balanceada e de qualidade",
+    icon: "🌾",
+  },
+  {
+    title: "Produtos Pet Shop",
+    description: "Cuidado completo para pets",
+    icon: "🐾",
+  },
+  {
+    title: "Sementes e Inoculantes",
+    description: "Genética superior para sua lavoura",
+    icon: "🌱",
+  },
+  {
+    title: "Ferramentas e Lonas",
+    description: "Equipamentos duráveis e resistentes",
+    icon: "🔧",
+  },
+  {
+    title: "Selaria e Roupas Country",
+    description: "Tradição e estilo do campo",
+    icon: "🤠",
+  },
 ];
 
 const benefits = [
   "Atendimento técnico especializado",
   "Marcas líderes do mercado",
-  "Atendimento próximo e consultivo",
-  "Ofertas sazonais conforme o calendário agro",
-  "Entregas rápidas em toda a região",
+  "Consultoria personalizada",
+  "Ofertas sazonais exclusivas",
+  "Entregas rápidas na região",
 ];
 
 const testimonials = [
   {
     name: "João Silva",
+    role: "Produtor Rural",
     text: "A Eliagro sempre me atende com muita atenção e tem os melhores produtos para minha fazenda.",
+    rating: 5,
   },
   {
     name: "Maria Oliveira",
+    role: "Veterinária",
     text: "Confio na Eliagro para tudo que preciso em insumos agrícolas e veterinários. Profissionalismo e qualidade.",
+    rating: 5,
   },
   {
     name: "Carlos Pereira",
+    role: "Técnico Agrícola",
     text: "Equipe técnica excelente e atendimento próximo. Recomendo para todos os produtores da região.",
+    rating: 5,
   },
 ];
 
-const whatsappLink = "https://wa.me/5534999474396";
-const transition = { duration: 0.6, ease: "easeOut" };
+const stats = [
+  { value: 35, suffix: "+", label: "Anos de Tradição" },
+  { value: 5000, suffix: "+", label: "Produtores Atendidos" },
+  { value: 5000, suffix: "+", label: "Produtos Disponíveis" },
+  { value: 100, suffix: "%", label: "Compromisso com Qualidade" },
+];
 
 const Index = () => {
-  return (
-    <>
-      <Header />
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
+  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-      {/* Hero Section */}
-      <section
-        id="hero"
-        className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-6 md:px-12 bg-fixed bg-center bg-cover"
-        style={{
-          backgroundImage:
-            "url('http://eliagro.com.br/imgs/bbannse_eliagro_mobile.jpg')",
-        }}
-        aria-label="Imagem hero da Eliagro com overlay e parallax"
+  const [statsRef, statsInView] = useInView({ triggerOnce: true, threshold: 0.3 });
+  const [productsRef, productsInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [benefitsRef, benefitsInView] = useInView({ triggerOnce: true, threshold: 0.2 });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  return (
+    <div className="font-sans bg-white text-gray-900 overflow-x-hidden">
+      {/* Header */}
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md shadow-sm"
       >
-        {/* Desktop background image */}
-        <div 
-          className="hidden md:block absolute inset-0 bg-fixed bg-center bg-cover"
-          style={{
-            backgroundImage: "url('http://eliagro.com.br/imgs/banner_site_eliagro.jpg')",
-          }}
-          aria-hidden="true"
-        />
-        
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 z-10" />
-        <div className="relative z-20 max-w-4xl text-white space-y-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold font-poppins leading-tight drop-shadow-lg">
-            O Agro de Patos de Minas confia na Eliagro
-          </h1>
-          <p className="text-lg md:text-xl font-medium drop-shadow-md max-w-3xl mx-auto">
-            Há mais de 35 anos oferecendo soluções completas em produtos veterinários, rações, sementes e insumos agrícolas.
-          </p>
-          <a
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
+          <a href="#" aria-label="Eliagro Produtos Agropecuários">
+            <img
+              src="http://eliagro.com.br/imgs/logodaeliagro.png"
+              alt="Logo Eliagro"
+              className="h-16 md:h-20 w-auto"
+              loading="lazy"
+            />
+          </a>
+
+          <nav className="hidden md:flex space-x-8 font-medium text-[#0C3B2E]">
+            {["Início", "Produtos", "Sobre", "Contato"].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(item.toLowerCase())}
+                className="hover:text-[#16A34A] transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+          </nav>
+
+          <motion.a
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Fale com um especialista no WhatsApp"
-            className="inline-block mt-6 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full shadow-lg font-semibold hover:scale-105 transition-transform"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="hidden md:flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full shadow-lg font-semibold"
           >
-            Fale com um especialista no WhatsApp
-          </a>
+            <Phone size={20} />
+            Fale no WhatsApp
+          </motion.a>
         </div>
-      </section>
+      </motion.header>
 
-      {/* Produtos Section */}
-      <motion.section
-        id="produtos"
-        className="max-w-7xl mx-auto px-6 md:px-12 py-16"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={transition}
-        aria-label="Categorias de produtos"
-      >
-        <h2 className="text-3xl font-bold text-center mb-12 font-poppins text-[#0C3B2E]">
-          Tudo o que o produtor precisa em um só lugar
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
-          {productCategories.map((title) => (
-            <div
-              key={title}
-              className="bg-white rounded-lg shadow-md p-6 cursor-default hover:shadow-lg transition-shadow"
-              aria-label={title}
-            >
-              <h3 className="text-xl font-semibold text-[#16A34A]">{title}</h3>
-            </div>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* Benefícios Section */}
-      <motion.section
-        id="beneficios"
-        className="bg-[#0C3B2E] text-white py-16 px-6 md:px-12"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={transition}
-        aria-label="Benefícios"
-      >
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8 font-poppins">Um parceiro do produtor, não apenas uma loja</h2>
-          <ul className="max-w-md mx-auto space-y-4 text-left font-inter text-lg">
-            {benefits.map((benefit) => (
-              <li key={benefit} className="flex items-center gap-3">
-                <svg
-                  className="w-6 h-6 text-green-400 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                {benefit}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </motion.section>
-
-      {/* Depoimentos Section */}
-      <motion.section
-        id="depoimentos"
-        className="max-w-7xl mx-auto px-6 md:px-12 py-16"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={transition}
-        aria-label="Depoimentos"
-      >
-        <h2 className="text-3xl font-bold text-center mb-12 font-poppins text-[#0C3B2E]">Quem conhece, confia.</h2>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map(({ name, text }) => (
-            <blockquote
-              key={name}
-              className="border border-[#16A34A] rounded-lg p-6 shadow-sm text-[#0C3B2E] bg-white"
-              aria-label={`Depoimento de ${name}`}
-            >
-              <p className="mb-4 italic">"{text}"</p>
-              <footer className="font-semibold text-[#16A34A]">— {name}</footer>
-            </blockquote>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* Contato Section */}
+      {/* Hero Section */}
       <section
-        id="contato"
-        className="bg-[#16A34A] text-white py-16 px-6 md:px-12"
-        aria-label="Contato"
+        id="início"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold mb-6 font-poppins">Estamos prontos para atender você.</h2>
-            <ul className="space-y-4 text-lg font-inter">
-              <li className="flex items-center gap-3">
-                <Phone size={24} aria-hidden="true" />
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-green-300"
-                  aria-label="Mensagem Eliagro"
-                >
-                  (34) 99947-4396
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 12H8m0 0l4-4m-4 4l4 4" />
-                </svg>
-                <a
-                  href="mailto:telemarketing@eliagro.com.br"
-                  className="underline hover:text-green-300"
-                  aria-label="E-mail Eliagro"
-                >
-                  telemarketing@eliagro.com.br
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 7h18M3 12h18M3 17h18" />
-                </svg>
-                Rua Dr. Marcolino, 255 – Centro – Patos de Minas – MG
-              </li>
-              <li className="flex items-center gap-3">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3" />
-                </svg>
-                Segunda a sábado, 8h às 18h
-              </li>
-            </ul>
-          </div>
-          <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden shadow-lg">
-            <iframe
-              title="Mapa do Google da Eliagro Produtos Agropecuários"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.927964964682!2d-46.51892768459206!3d-18.57992798736654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94a7a0a3a7a7a7a7%3A0x7a7a7a7a7a7a7a7a!2sEliagro%20Produtos%20Agropecu%C3%A1rios!5e0!3m2!1spt-BR!2sbr!4v1695830400000!5m2!1spt-BR!2sbr"
-              width="100%"
-              height="100%"
-              loading="lazy"
-              className="border-0"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+        <motion.div
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="absolute inset-0 bg-cover bg-center"
+        >
+          <img
+            src="http://eliagro.com.br/imgs/banner_site_eliagro.jpg"
+            alt="Campo ao amanhecer"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative z-10 text-center text-white px-6 max-w-5xl"
+        >
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            O Agro de Patos de Minas <br />
+            <span className="text-[#16A34A]">confia na Eliagro</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            Há mais de 35 anos oferecendo soluções completas em produtos veterinários, rações, sementes e insumos agrícolas.
+          </p>
+          <motion.a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(22, 163, 74, 0.4)" }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full shadow-2xl font-semibold text-lg"
+          >
+            Fale com um especialista
+            <ChevronRight size={24} />
+          </motion.a>
+        </motion.div>
+      </section>
+
+      {/* Stats Section */}
+      <section ref={statsRef} className="py-20 bg-gradient-to-br from-[#0C3B2E] to-[#16A34A] text-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map(({ value, suffix, label }, index) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 30 }}
+                animate={statsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="text-5xl md:text-6xl font-bold mb-2">
+                  {statsInView && <CountUp end={value} duration={2.5} suffix={suffix} />}
+                </div>
+                <div className="text-lg opacity-90">{label}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      <Footer />
-    </>
+      {/* Products Section */}
+      <section id="produtos" ref={productsRef} className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={productsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0C3B2E] mb-4">
+              Tudo o que o produtor precisa
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Linha completa de produtos para o agronegócio
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {productCategories.map((product, index) => (
+              <motion.div
+                key={product.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={productsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -5, scale: 1.03 }}
+                className="bg-white rounded-2xl shadow-lg p-8 cursor-default transition-all duration-300"
+              >
+                <div className="text-6xl mb-4">{product.icon}</div>
+                <h3 className="text-2xl font-bold text-[#0C3B2E] mb-3">{product.title}</h3>
+                <p className="text-gray-600">{product.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section id="sobre" ref={benefitsRef} className="py-20 bg-[#0C3B2E] text-white">
+        <div className="max-w-5xl mx-auto px-6 md:px-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={benefitsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold text-center mb-12"
+          >
+            Um parceiro do produtor, não apenas uma loja
+          </motion.h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={benefit}
+                initial={{ opacity: 0, x: -30 }}
+                animate={benefitsInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-6"
+              >
+                <div className="flex-shrink-0 w-12 h-12 bg-[#16A34A] rounded-full flex items-center justify-center">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span className="text-lg font-medium">{benefit}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-6 md:px-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-[#0C3B2E] mb-16">
+            Quem conhece, confia
+          </h2>
+
+          <div className="relative h-80">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{
+                  opacity: index === currentTestimonial ? 1 : 0,
+                  scale: index === currentTestimonial ? 1 : 0.9,
+                  pointerEvents: index === currentTestimonial ? "auto" : "none",
+                }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-xl p-10"
+              >
+                <div className="flex gap-2 mb-6">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="text-yellow-400 fill-yellow-400" size={24} />
+                  ))}
+                </div>
+                <p className="text-2xl text-gray-700 mb-6 italic">"{testimonial.text}"</p>
+                <div>
+                  <div className="font-bold text-xl text-[#0C3B2E]">{testimonial.name}</div>
+                  <div className="text-gray-600">{testimonial.role}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="flex justify-center gap-3 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentTestimonial(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === currentTestimonial ? "bg-[#16A34A] w-8" : "bg-gray-300"
+                }`}
+                aria-label={`Ver depoimento ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contato" className="py-20 bg-gradient-to-br from-[#16A34A] to-[#0C3B2E] text-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                Estamos prontos para atender você
+              </h2>
+
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <MapPin className="flex-shrink-0" size={28} />
+                  <span className="text-lg">Rua Dr. Marcolino, 255 – Centro – Patos de Minas – MG</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Phone className="flex-shrink-0" size={28} />
+                  <a href={whatsappLink} className="text-lg hover:text-green-200 transition-colors">
+                    (34) 99947-4396
+                  </a>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Mail className="flex-shrink-0" size={28} />
+                  <a href="mailto:telemarketing@eliagro.com.br" className="text-lg hover:text-green-200 transition-colors">
+                    telemarketing@eliagro.com.br
+                  </a>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Clock className="flex-shrink-0" size={28} />
+                  <span className="text-lg">Segunda a sábado, 8h às 18h</span>
+                </div>
+              </div>
+
+              <motion.a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-white text-[#16A34A] px-8 py-4 rounded-full shadow-xl font-bold text-lg mt-8"
+              >
+                Fale com a Eliagro
+                <ChevronRight size={24} />
+              </motion.a>
+            </div>
+
+            <div className="h-96 rounded-2xl overflow-hidden shadow-2xl">
+              <iframe
+                title="Mapa Eliagro"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.927964964682!2d-46.51892768459206!3d-18.57992798736654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94a7a0a3a7a7a7a7%3A0x7a7a7a7a7a7a7a7a!2sEliagro%20Produtos%20Agropecu%C3%A1rios!5e0!3m2!1spt-BR!2sbr!4v1695830400000!5m2!1spt-BR!2sbr"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                className="border-0"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#0C3B2E] text-white py-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <img
+                src="http://eliagro.com.br/imgs/logodaeliagro.png"
+                alt="Logo Eliagro"
+                className="h-16 mb-4"
+              />
+              <p className="text-gray-300">
+                Há mais de 35 anos oferecendo soluções completas no agro.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-xl mb-4">Contato</h3>
+              <div className="space-y-2 text-gray-300">
+                <p>(34) 99947-4396</p>
+                <p>telemarketing@eliagro.com.br</p>
+                <p>Segunda a sábado, 8h às 18h</p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-xl mb-4">Redes Sociais</h3>
+              <div className="flex gap-4">
+                {["instagram", "facebook", "whatsapp"].map((social) => (
+                  <motion.a
+                    key={social}
+                    href={social === "whatsapp" ? whatsappLink : `https://${social}.com/eliagrovet`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#16A34A] transition-colors"
+                  >
+                    <span className="sr-only">{social}</span>
+                    <div className="w-6 h-6 bg-white rounded-full" />
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-white/20 pt-8 text-center text-gray-400">
+            © {new Date().getFullYear()} Eliagro — Todos os direitos reservados.
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 };
 
