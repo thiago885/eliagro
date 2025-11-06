@@ -21,7 +21,7 @@ const Header = () => {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md shadow-sm"
+      className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
         {/* Logo */}
@@ -82,7 +82,7 @@ const Header = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="md:hidden bg-white/90 backdrop-blur-md shadow-inner overflow-hidden"
+            className="md:hidden bg-white shadow-inner overflow-hidden"
           >
             <ul className="flex flex-col space-y-2 px-6 py-6 font-poppins font-semibold text-[#0C3B2E]">
               {navItems.map(({ label, href }) => (
