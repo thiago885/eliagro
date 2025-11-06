@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useAnimationFrame } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
@@ -51,11 +51,21 @@ const HeroSection = () => {
           }}
           style={{ willChange: "transform" }}
         >
-          <img
-            src="http://eliagro.com.br/imgs/banner_site_eliagro.jpg"
-            alt="Campo ao amanhecer"
-            className="w-full h-full object-cover"
-          />
+          <picture>
+            <source 
+              media="(max-width: 768px)" 
+              srcSet="http://eliagro.com.br/imgs/bbannse_eliagro_mobile.jpg" 
+            />
+            <source 
+              media="(min-width: 769px)" 
+              srcSet="http://eliagro.com.br/imgs/banner_site_eliagro.jpg" 
+            />
+            <img
+              src="http://eliagro.com.br/imgs/banner_site_eliagro.jpg"
+              alt="Campo ao amanhecer"
+              className="w-full h-full object-cover"
+            />
+          </picture>
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
       </motion.div>
