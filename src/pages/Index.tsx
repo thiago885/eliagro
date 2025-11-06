@@ -4,6 +4,7 @@ import React from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
+import { Phone } from "lucide-react";
 
 const productCategories = [
   "Medicamentos Veterinários",
@@ -37,6 +38,7 @@ const testimonials = [
   },
 ];
 
+const whatsappLink = "https://wa.me/5534999474396";
 const transition = { duration: 0.6, ease: "easeOut" };
 
 const Index = () => {
@@ -63,7 +65,7 @@ const Index = () => {
             Há mais de 35 anos oferecendo soluções completas em produtos veterinários, rações, sementes e insumos agrícolas.
           </p>
           <a
-            href="https://wa.me/5534999474396"
+            href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Fale com um especialista no WhatsApp"
