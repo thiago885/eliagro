@@ -54,16 +54,25 @@ const HeroSection = () => {
           <picture>
             <source 
               media="(max-width: 768px)" 
-              srcSet="http://eliagro.com.br/imgs/bbannse_eliagro_mobile.jpg" 
+              srcSet="http://eliagro.com.br/imgs/bbannse_eliagro_mobile.jpg"
+              type="image/jpeg"
             />
             <source 
               media="(min-width: 769px)" 
-              srcSet="http://eliagro.com.br/imgs/banner_site_eliagro.jpg" 
+              srcSet="http://eliagro.com.br/imgs/banner_site_eliagro.jpg"
+              type="image/jpeg"
             />
             <img
               src="http://eliagro.com.br/imgs/banner_site_eliagro.jpg"
-              alt="Campo ao amanhecer"
+              alt="Campo ao amanhecer - Eliagro Produtos Agropecuários"
               className="w-full h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
+              onError={(e) => {
+                console.error('Erro ao carregar imagem da hero');
+                const target = e.target as HTMLImageElement;
+                target.style.backgroundColor = '#0C3B2E';
+              }}
             />
           </picture>
         </motion.div>
