@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, ChevronRight, Star, Users, Award, TrendingUp } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ChevronRight, Star, Pill, Wheat, PawPrint, Sprout, Wrench, Shirt, CheckCircle2 } from "lucide-react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
@@ -12,32 +12,32 @@ const productCategories = [
   {
     title: "Medicamentos Veterinários",
     description: "Linha completa para saúde animal",
-    icon: "💊",
+    icon: Pill,
   },
   {
     title: "Rações e Suplementos",
     description: "Nutrição balanceada e de qualidade",
-    icon: "🌾",
+    icon: Wheat,
   },
   {
     title: "Produtos Pet Shop",
     description: "Cuidado completo para pets",
-    icon: "🐾",
+    icon: PawPrint,
   },
   {
     title: "Sementes e Inoculantes",
     description: "Genética superior para sua lavoura",
-    icon: "🌱",
+    icon: Sprout,
   },
   {
     title: "Ferramentas e Lonas",
     description: "Equipamentos duráveis e resistentes",
-    icon: "🔧",
+    icon: Wrench,
   },
   {
     title: "Selaria e Roupas Country",
     description: "Tradição e estilo do campo",
-    icon: "🤠",
+    icon: Shirt,
   },
 ];
 
@@ -47,6 +47,7 @@ const benefits = [
   "Consultoria personalizada",
   "Ofertas sazonais exclusivas",
   "Entregas rápidas na região",
+  "Sustentabilidade e qualidade garantida",
 ];
 
 const testimonials = [
@@ -230,27 +231,30 @@ const Index = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {productCategories.map((product, index) => (
-              <motion.div
-                key={product.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={productsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.03 }}
-                className="bg-white rounded-2xl shadow-lg p-8 cursor-default transition-all duration-300"
-              >
-                <div className="text-6xl mb-4">{product.icon}</div>
-                <h3 className="text-2xl font-bold text-[#0C3B2E] mb-3">{product.title}</h3>
-                <p className="text-gray-600">{product.description}</p>
-              </motion.div>
-            ))}
+            {productCategories.map((product, index) => {
+              const IconComponent = product.icon;
+              return (
+                <motion.div
+                  key={product.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={productsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  className="bg-white rounded-2xl shadow-lg p-8 cursor-default hover:shadow-xl transition-all duration-300"
+                >
+                  <IconComponent className="w-12 h-12 text-green-600 mb-4" strokeWidth={1.5} />
+                  <h3 className="text-2xl font-bold text-[#0C3B2E] mb-3">{product.title}</h3>
+                  <p className="text-gray-600">{product.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
       <section id="sobre" ref={benefitsRef} className="py-20 bg-[#0C3B2E] text-white">
-        <div className="max-w-5xl mx-auto px-6 md:px-12">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={benefitsInView ? { opacity: 1, y: 0 } : {}}
@@ -260,19 +264,18 @@ const Index = () => {
             Um parceiro do produtor, não apenas uma loja
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={benefit}
-                initial={{ opacity: 0, x: -30 }}
-                animate={benefitsInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all duration-300"
               >
                 <div className="flex-shrink-0 w-12 h-12 bg-[#16A34A] rounded-full flex items-center justify-center">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
+                  <CheckCircle2 className="w-6 h-6" strokeWidth={2} />
                 </div>
                 <span className="text-lg font-medium">{benefit}</span>
               </motion.div>
