@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, ChevronRight, Star, Pill, Wheat, PawPrint, Sprout, Wrench, Shirt, CheckCircle2, Instagram, Facebook, MessageCircle } from "lucide-react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+import HeroSection from "../components/HeroSection";
 
 const whatsappLink = "https://wa.me/5534999474396";
 
@@ -101,9 +102,6 @@ const socialLinks = [
 
 const Index = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
-  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   const [statsRef, statsInView] = useInView({ triggerOnce: true, threshold: 0.3 });
   const [productsRef, productsInView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -169,48 +167,7 @@ const Index = () => {
       </motion.header>
 
       {/* Hero Section */}
-      <section
-        id="início"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      >
-        <motion.div
-          style={{ y: heroY, opacity: heroOpacity }}
-          className="absolute inset-0 bg-cover bg-center"
-        >
-          <img
-            src="http://eliagro.com.br/imgs/banner_site_eliagro.jpg"
-            alt="Campo ao amanhecer"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative z-10 text-center text-white px-6 max-w-5xl"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            O Agro de Patos de Minas <br />
-            <span className="text-[#16A34A]">confia na Eliagro</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Há mais de 35 anos oferecendo soluções completas em produtos veterinários, rações, sementes e insumos agrícolas.
-          </p>
-          <motion.a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(22, 163, 74, 0.4)" }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full shadow-2xl font-semibold text-lg"
-          >
-            Fale com um especialista
-            <ChevronRight size={24} />
-          </motion.a>
-        </motion.div>
-      </section>
+      <HeroSection />
 
       {/* Stats Section */}
       <section ref={statsRef} className="py-20 bg-gradient-to-br from-[#0C3B2E] to-[#16A34A] text-white">
