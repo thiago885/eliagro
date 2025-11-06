@@ -1,40 +1,46 @@
 "use client";
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { MessageSquare } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Instagram, Facebook, Phone } from "lucide-react";
 
-const whatsappNumber = "5534999474396";
-const whatsappLink = `https://wa.me/${whatsappNumber}`;
-
-const menuItems = [
-  { label: "Início", href: "/" },
+const navItems = [
+  { label: "Início", href: "#" },
   { label: "Produtos", href: "#produtos" },
-  { label: "Promoções", href: "#promocoes" },
+  { label: "Sobre", href: "#sobre" },
   { label: "Contato", href: "#contato" },
 ];
 
+const whatsappLink = "https://wa.me/5534999474396";
+
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+    <motion.header
+      initial={{ y: -60, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md shadow-sm"
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
         {/* Logo */}
-        <a href="/" aria-label="Eliagro Produtos Agropecuários" className="flex items-center">
+        <a href="#" aria-label="Eliagro Produtos Agropecuários" className="flex items-center">
           <img
             src="http://eliagro.com.br/imgs/logodaeliagro.png"
             alt="Logo Eliagro Produtos Agropecuários"
-            className="h-16 w-auto"
+            className="h-10 w-auto"
             loading="lazy"
           />
         </a>
 
-        {/* Menu */}
-        <nav className="hidden md:flex space-x-8 font-semibold text-[#004C72]">
-          {menuItems.map(({ label, href }) => (
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-10 font-poppins font-semibold text-[#0C3B2E]">
+          {navItems.map(({ label, href }) => (
             <a
               key={label}
               href={href}
-              className="hover:text-[#009F47] transition-colors"
+              className="hover:text-[#16A34A] transition-colors"
               aria-label={`Navegar para ${label}`}
             >
               {label}
@@ -42,20 +48,71 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* WhatsApp Button */}
-        <div className="flex items-center">
-          <Button
-            asChild
-            className="bg-[#25D366] hover:bg-[#1ebe5a] text-white rounded-full shadow-lg px-4 py-2 flex items-center gap-2"
+        {/* WhatsApp Button Desktop */}
+        <div className="hidden md:flex">
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Fale conosco pelo WhatsApp"
+            className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 transition-transform font-semibold flex items-center gap-2"
           >
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer" aria-label="Fale conosco pelo WhatsApp">
-              <MessageSquare size={20} />
-              <span className="hidden sm:inline">WhatsApp</span>
-            </a>
-          </Button>
+            <Phone size={18} />
+            WhatsApp
+          </a>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            className="text-[#0C3B2E]"
+          >
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
       </div>
-    </header>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.nav
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="md:hidden bg-white/90 backdrop-blur-md shadow-inner overflow-hidden"
+          >
+            <ul className="flex flex-col space-y-4 px-6 py-6 font-poppins font-semibold text-[#0C3B2E]">
+              {navItems.map(({ label, href }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block hover:text-[#16A34A] transition-colors text-lg"
+                    aria-label={`Navegar para ${label}`}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Fale conosco pelo WhatsApp"
+                  className="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full shadow-md hover:scale-105 transition-transform font-semibold"
+                >
+                  WhatsApp
+                </a>
+              </li>
+            </ul>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 
