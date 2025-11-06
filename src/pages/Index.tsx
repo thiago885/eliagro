@@ -52,7 +52,7 @@ const Index = () => {
         className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-6 md:px-12 bg-fixed bg-center bg-cover"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80')",
+            "url('http://eliagro.com.br/imgs/banner_site_eliagro.jpg')",
         }}
         aria-label="Imagem hero da Eliagro com overlay e parallax"
       >
@@ -152,7 +152,7 @@ const Index = () => {
               className="border border-[#16A34A] rounded-lg p-6 shadow-sm text-[#0C3B2E] bg-white"
               aria-label={`Depoimento de ${name}`}
             >
-              <p className="mb-4 italic">“{text}”</p>
+              <p className="mb-4 italic">"{text}"</p>
               <footer className="font-semibold text-[#16A34A]">— {name}</footer>
             </blockquote>
           ))}
