@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, ChevronRight, Star, Pill, Wheat, PawPrint, Sprout, Wrench, Shirt, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ChevronRight, Star, Pill, Wheat, PawPrint, Sprout, Wrench, Shirt, CheckCircle2, Instagram, Facebook, MessageCircle } from "lucide-react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
@@ -76,6 +76,27 @@ const stats = [
   { value: 5000, suffix: "+", label: "Produtores Atendidos" },
   { value: 5000, suffix: "+", label: "Produtos Disponíveis" },
   { value: 100, suffix: "%", label: "Compromisso com Qualidade" },
+];
+
+const socialLinks = [
+  {
+    name: "instagram",
+    icon: Instagram,
+    href: "https://instagram.com/eliagrovet",
+    label: "Instagram Eliagro",
+  },
+  {
+    name: "facebook",
+    icon: Facebook,
+    href: "https://facebook.com/eliagrovet",
+    label: "Facebook Eliagro",
+  },
+  {
+    name: "whatsapp",
+    icon: MessageCircle,
+    href: whatsappLink,
+    label: "WhatsApp Eliagro",
+  },
 ];
 
 const Index = () => {
@@ -421,17 +442,17 @@ const Index = () => {
             <div>
               <h3 className="font-bold text-xl mb-4">Redes Sociais</h3>
               <div className="flex gap-4">
-                {["instagram", "facebook", "whatsapp"].map((social) => (
+                {socialLinks.map(({ name, icon: IconComponent, href, label }) => (
                   <motion.a
-                    key={social}
-                    href={social === "whatsapp" ? whatsappLink : `https://${social}.com/eliagrovet`}
+                    key={name}
+                    href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.2, rotate: 5 }}
                     className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#16A34A] transition-colors"
+                    aria-label={label}
                   >
-                    <span className="sr-only">{social}</span>
-                    <div className="w-6 h-6 bg-white rounded-full" />
+                    <IconComponent className="w-6 h-6" />
                   </motion.a>
                 ))}
               </div>
