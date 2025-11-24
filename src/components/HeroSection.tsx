@@ -52,15 +52,9 @@ const HeroSection = () => {
           style={{ willChange: "transform" }}
         >
           <img
-            src="http://eliagro.com.br/imgs/banner_site_eliagro.jpg"
+            src="https://eliagro.com.br/imgs/banner-eliagro.jpeg"
             alt="Campo ao amanhecer - Eliagro Produtos Agropecuários"
-            className="w-full h-full object-cover md:block hidden"
-            loading="eager"
-          />
-          <img
-            src="http://eliagro.com.br/imgs/bbannse_eliagro_mobile.jpg"
-            alt="Campo ao amanhecer - Eliagro Produtos Agropecuários"
-            className="w-full h-full object-cover md:hidden block"
+            className="w-full h-full object-cover"
             loading="eager"
           />
         </motion.div>
